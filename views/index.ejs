@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de URL</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Encurtador de URL</h1>
+      <form class="row" action="/short-url" method="POST">
+        <input id="full-url" class="column column-75" type="url" name="fullUrl" placeholder="Insira a URL" required>
+        <button class="column column-25" type="submit">Encurtar URL</button>
+      </form>
+      <table class="table table-striped table-responsive">
+        <thead>
+          <th>URL completa</th>
+          <th>URL encurtada</th>
+          <th>Cliques</th>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(url => { %>
+            <tr>
+              <td>
+                <a href="<%= url.full %>" target="_blank"><%= url.full %> </a>
+              </td>
+              <td>
+                <a href="<%= url.short %>" target="_blank"><%= url.short %> </a>
+              </td>
+              <td>
+                <%= url.clicks %> 
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
